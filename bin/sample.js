@@ -1,5 +1,5 @@
 const { Javascript } = require("../lib/lang/javascript");
-const { ClassSpec, PropertyInfo } = require('../lib/spec.js');
+const { ClassSpec, PropertyInfo, Document, WrapNode, AbsWrapNode } = require('../lib/spec.js');
 
 function __test_js__() {
     const args = {
@@ -28,11 +28,12 @@ function __test_js__() {
             new PropertyInfo('meta', 'object')
         ]),
     ];
+    const doc = new Document();
     const js = new Javascript();
     for(const spec of specs) {
-        console.log(js.to__class(spec).join("\n"));
+        doc.addChild(js.to__class(spec));
     }
-
+    console.log(doc.toString());
 }
 
 __test_js__();
